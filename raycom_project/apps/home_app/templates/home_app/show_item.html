@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Item Info</title>
+</head>
+<body style="margin:0">
+    <header style="background-color: lightgray; padding-bottom: 50px;">
+        <center>
+            <img src="https://lh3.googleusercontent.com/fp2bDu9TQf98CMyR8HXbt58y-4SI0MAA4H6q_wCFAgTwLA3ydM3lWMVYhOQjQekylqr5paBYH-T0IhsX0Dqv0eUgBfTbalLlXK8v0Bf7xazJIAalalwpm1goePpXtWoIcHt79CqlmYg=s200-p-k" style=" height: 250px; width: 250px; margin-left: 20px;">
+        </center>
+        <center>
+            <select onchange="location = this.value;" style="border-radius:4px;border:1px solid hotpink; background-color: pink; padding: 4px 30px; box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)">
+                <option selected disabled>name</option>
+                <option value="">Account</option>
+                <option value="">Orders</option>
+                <option value="">Logout</option>
+            </select>
+        </center>
+    </header>
+    <form action="/home/add_to_cart/{{item.id}}" method="post">
+        {%csrf_token%}
+        <div style="text-align: center; padding-top: 20px">
+            <div style="float: left; width: 45%">
+                <p style="text-align: right; right: 400px; font-size: 45px">{{item.name}}</p>
+            </div>
+            <div style="float: right; width: 45%">
+                <p style="text-align: left; right: 400px">Description: &nbsp {{item.desc}}</p>
+                <p style="text-align: left; right: 400px">Price: &nbsp ${{item.price}}</p>
+                <p style="text-align: left; right: 400px">Quantity: &nbsp
+                    <select name="qty">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </p>
+                <p style="text-align: left; right: 400px; font-size: 10px"><i>Sold by: &nbsp {{item.seller.first_name}} {{item.seller.last_name}}</i></p>
+                <p style="text-align: left; right: 400px">
+                <input type="submit" value="Add to Cart" style="background-color: pink;border-radius:4px; border:1px solid hotpink; padding: 4px 10px; font-weight: 700; box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); text-align: left; right: 400px">
+                </p>
+            </div>
+        </div>
+    </form>
+
+    <div style="text-align: center; padding-top: 20px; clear: both">
+        <div style="padding-top: 20px">
+            <input onclick="location.href='/home/checkout'" type="button" value="Proceed to Checkout" style="background-color: pink;border-radius:4px; border:1px solid hotpink; padding: 4px 10px; font-weight: 700; box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)">
+            <input onclick="location.href='/home'" type="button" value="Home" style="background-color: pink;border-radius:4px; border:1px solid hotpink; padding: 4px 10px; font-weight: 700; box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)">
+        </div>
+    </div>
+</body>
+</html>

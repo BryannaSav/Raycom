@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Login</title>
+    </head>
+    <body>
+        <div>
+            <h1>Welcome!</h1>
+        </div>
+
+        <div style="display: inline-block; outline:2px solid black; padding: 0 20px 20px 20px">
+            <h3>Register Here</h3>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+
+            <form action='/register' method='post'>
+                {% csrf_token %}
+                <p>
+                    First:  <input type='text' name='first_name' placeholder='Enter first name' style="float: right">
+                </p>
+                <p>
+                    Last Name:  <input type='text' name='last_name' placeholder='Enter last name' style="float: right">
+                </p>
+                <p>
+                    Email:  <input type='email' name='email' placeholder='Enter email' style="float: right">
+                </p>
+                <!-- <p>
+                    Address:
+                    <input type='text' name='number' placeholder='number' style="float: right"></br>
+                    <input type='text' name='street' placeholder='street' style="float: right"></br>
+                    <input type='text' name='apt' placeholder='apt' style="float: right"></br>
+                    <input type='text' name='city' placeholder='city' style="float: right"></br>
+                    <input type='text' name='state' placeholder='state' style="float: right"></br>
+                    <input type='number' name='zip_code' placeholder='zip_code' style="float: right"></br>
+                    <input type='number' name='carrier_code' placeholder='carrier_code' style="float: right">
+                </p> -->
+                <p>
+                    <label for="password">Password: </label><input type='text' name='password' id="password" placeholder='Enter password' style="float: right">
+                </p>
+                <p>
+                    Confirm PW:  &nbsp &nbsp<input type='text' name='c_password' placeholder='Confirm password' style="float: right">
+                </p>
+                <p>
+                    Date of Birth:  <input type="date" name="dob" style="float: right">
+                </p>
+                <input type='submit' value='Register' style="float: right"><br>
+            </form>
+        </div>
+
+        <div style="display: inline-block; vertical-align: top; margin-left: 50px">
+            <h3>Login Here</h3>
+            <!-- {% if messages %}
+                {% for message in messages %}
+                <p style=" color: red"> {{ message }} </p>
+                {% endfor %}
+            {% endif %} -->
+            <form action='/login' method='post'>
+                {% csrf_token %}
+                <p><input type='email' name='email' placeholder='Enter email'></p>
+                <p><input type='text' name='password' placeholder='Enter password'></p>
+                <input type='submit' value='Login'><br>
+            </form>
+        </div>
+    </body>
+</html>

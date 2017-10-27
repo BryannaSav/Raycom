@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Profile</title>
+</head>
+<body style="margin:0"> 
+    <header style="background-color: lightgray; padding-bottom: 50px;">
+        <center>
+            <img src="https://lh3.googleusercontent.com/fp2bDu9TQf98CMyR8HXbt58y-4SI0MAA4H6q_wCFAgTwLA3ydM3lWMVYhOQjQekylqr5paBYH-T0IhsX0Dqv0eUgBfTbalLlXK8v0Bf7xazJIAalalwpm1goePpXtWoIcHt79CqlmYg=s200-p-k" style=" height: 250px; width: 250px; margin-left: 20px;">
+        </center>
+        <center>
+            <select onchange="location = this.value;" style="border-radius:4px; border:1px solid hotpink; background-color: pink; margin-right: 20px; padding: 4px 30px; box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)">
+                <option selected disabled>{{request.session.first_name}}</option>
+                <option value="/home/account">Account</option>
+                <option value="/home/checkout">Checkout</option>
+                <option value="/home/store">Store</option>
+                <option value="/logout">Logout</option>
+            </select>
+        </center>
+    </header>
+    <center>
+        <div style="text-align: center; padding-top: 20px">
+            <div style="display: inline-block;">
+                <h2 style="border-bottom: 1px solid hotpink">Checkout!</h2>
+                
+                {%if currentUser.carts.count == 0%}
+                    <tr>
+                        You don't have any items yet!
+                    </tr>
+                {% endif%}
+
+                {% for item in items %}
+                    <p style="text-align: left">Item: &nbsp {{item.name}}</p>
+                    <p style="text-align: left">Price: &nbsp {{item.price}}</p>
+                    <p style="text-align: left">Quantity: &nbsp {{item.qty}}</p>
+                    <p style="text-align: left">Will be delivered by: &nbsp **</p>
+                {% endfor %}
+
+                <div style="padding-top: 20px">
+                    <input onclick="location.href='www.google.com'" type="button" value="Place Order" style="background-color: pink;border-radius:4px; border:1px solid hotpink; padding: 4px 10px; font-weight: 700; box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)">
+                    <input onclick="location.href='/home'" type="button" value="Home" style="background-color: pink;border-radius:4px; border:1px solid hotpink; padding: 4px 10px; font-weight: 700; box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)">
+                </div>
+            </div>
+        </div>
+    </center>
+</body>
+</html>
