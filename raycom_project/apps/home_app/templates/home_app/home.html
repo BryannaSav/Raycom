@@ -10,19 +10,19 @@
     </head>
     <body style=" margin:0; padding: 0">
         <header style="background-color: lightgray; padding-bottom: 50px;">
-                <center>
-                    <img src="https://lh3.googleusercontent.com/fp2bDu9TQf98CMyR8HXbt58y-4SI0MAA4H6q_wCFAgTwLA3ydM3lWMVYhOQjQekylqr5paBYH-T0IhsX0Dqv0eUgBfTbalLlXK8v0Bf7xazJIAalalwpm1goePpXtWoIcHt79CqlmYg=s200-p-k" style=" height: 250px; width: 250px; margin-left: 20px;">
-                </center>
-                <center>
-                    <select onchange="location = this.value;" style="border-radius:4px; border:1px solid hotpink; background-color: pink; margin-right: 20px; padding: 4px 30px; box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)">
-                        <option selected disabled>{{request.session.first_name}}</option>
-                        <option value="/home/account">Account</option>
-                        <option value="/home/checkout">Checkout</option>
-                        <option value="/home/store">Store</option>
-                        <option value="/logout">Logout</option>
-                    </select>
-                </center>
-            </header>
+            <center>
+                <img src="https://lh3.googleusercontent.com/fp2bDu9TQf98CMyR8HXbt58y-4SI0MAA4H6q_wCFAgTwLA3ydM3lWMVYhOQjQekylqr5paBYH-T0IhsX0Dqv0eUgBfTbalLlXK8v0Bf7xazJIAalalwpm1goePpXtWoIcHt79CqlmYg=s200-p-k" style=" height: 250px; width: 250px; margin-left: 20px;">
+            </center>
+            <center>
+                <select onchange="location = this.value;" style="border-radius:4px; border:1px solid hotpink; background-color: pink; padding-right: 30px; padding-top: 6px; padding-bottom: 4px; box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)">
+                    <option selected disabled>{{request.session.first_name}}</option>
+                    <option value="/home/account">Account</option>
+                    <option value="/home/checkout">Checkout</option>
+                    <option value="/home/store">Store</option>
+                    <option value="/logout">Logout</option>
+                </select>
+            </center>
+        </header>
         <center>
             <table border="1">
                 <tr>

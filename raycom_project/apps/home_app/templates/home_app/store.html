@@ -9,13 +9,13 @@
 <body style="margin:0"> 
     <header style="background-color: lightgray; padding-bottom: 50px;">
         <center>
-            <img src="https://lh3.googleusercontent.com/fp2bDu9TQf98CMyR8HXbt58y-4SI0MAA4H6q_wCFAgTwLA3ydM3lWMVYhOQjQekylqr5paBYH-T0IhsX0Dqv0eUgBfTbalLlXK8v0Bf7xazJIAalalwpm1goePpXtWoIcHt79CqlmYg=s200-p-k" style=" height: 250px; width: 250px">
+            <img src="https://lh3.googleusercontent.com/fp2bDu9TQf98CMyR8HXbt58y-4SI0MAA4H6q_wCFAgTwLA3ydM3lWMVYhOQjQekylqr5paBYH-T0IhsX0Dqv0eUgBfTbalLlXK8v0Bf7xazJIAalalwpm1goePpXtWoIcHt79CqlmYg=s200-p-k" style=" height: 250px; width: 250px; margin-left: 20px;">
         </center>
         <center>
-            <select onchange="location = this.value;" style="border-radius:4px;border:1px solid hotpink; background-color: pink; margin-right: 20px; padding: 4px 30px; box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)">
+            <select onchange="location = this.value;" style="border-radius:4px; border:1px solid hotpink; background-color: pink; padding-right: 30px; padding-top: 6px; padding-bottom: 4px; box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)">
                 <option selected disabled>{{request.session.first_name}}</option>
                 <option value="/home/account">Account</option>
-                <option value="">Orders</option>
+                <option value="/home/checkout">Checkout</option>
                 <option value="/home/store">Store</option>
                 <option value="/logout">Logout</option>
             </select>
@@ -24,7 +24,7 @@
     <center>
         <div style="text-align: center; padding-top: 20px">
             <div style="display: inline-block;">
-                <h2>{{user.first_name}}'s store</h2>
+                <h2 style="border-bottom: 1px solid hotpink">{{user.first_name}}'s store</h2>
                 <h4>Add a New Product:</h4>
                 {% if messages %}
                     {% for message in messages %}
@@ -32,33 +32,47 @@
                     {% endfor %}
                 {% endif %}
                 <form action="/home/new_item" method="post">
-                    {% csrf_token %}
-                    <label name="name">Product Name:</label>
-                    <input type="text" name="name"><br>
-                    <label name="desc">Product Description:</label>
-                    <input type="text" name="desc"><br>
-                    <label name="price">Product Price:</label>
-                    <input type="text" name="price"><br>
-                    <input type="submit" value="Add">
+                    <div style="text-align: left">
+                        {% csrf_token %}
+                        <p>
+                            <label name="name">Product Name:</label>
+                            <input type="text" name="name" style="float: right"><br>
+                        </p>
+                        <p>
+                            <label name="desc">Product Description:</label>
+                            <input type="text" name="desc" style="float: right"><br>
+                        </p>
+                        <p>
+                            <label name="price">Product Price:</label>
+                            <input type="text" name="price" style="float: right"><br>
+                        </p>
+                        <p style="text-align: center; right: 400px; padding-top: 20px">
+                            <input type="submit" value="Add it" style="background-color: pink;border-radius:4px; border:1px solid hotpink; padding: 4px 10px; font-weight: 700; box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)">
+                        </p>
+                    </div>
                 </form>
-                <h4>Available Products:</h4>
-                <table border="1">
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                    </tr>
-                    {%for item in items%}
-                        <tr>
-                            <td><a href="/home/show_item/{{item.id}}">{{item.name}}</a></td>
-                            <td>{{item.desc}}</td>
-                            <td>${{item.price|floatformat:2}}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
+                <div style="padding-top: 20px; padding-bottom: 20px">
+                    <h4>Available Products:</h4>
+                    <center>
+                        <table border="1">
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                            </tr>
+                            {%for item in items%}
+                                <tr>
+                                    <td><a href="/home/show_item/{{item.id}}">{{item.name}}</a></td>
+                                    <td>{{item.desc}}</td>
+                                    <td>${{item.price|floatformat:2}}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </center>
+                </div>
                 <div style="padding-top: 20px">
                     <input onclick="location.href='www.google.com'" type="button" value="Your Orders" style="background-color: pink;border-radius:4px; border:1px solid hotpink; padding: 4px 10px; font-weight: 700; box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)">
-                    <input onclick="location.href='www.youtube.com'" type="button" value="Edit Profile" style="background-color: pink;border-radius:4px; border:1px solid hotpink; padding: 4px 10px; font-weight: 700; box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)">
+                    <input onclick="location.href='/home/edit_profile/{{user.id}}'" type="button" value="Edit Profile" style="background-color: pink;border-radius:4px; border:1px solid hotpink; padding: 4px 10px; font-weight: 700; box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)">
                     <input onclick="location.href='/home'" type="button" value="Home" style="background-color: pink;border-radius:4px; border:1px solid hotpink; padding: 4px 10px; font-weight: 700; box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)">
                 </div>
             </div>
